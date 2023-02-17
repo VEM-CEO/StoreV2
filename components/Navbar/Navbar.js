@@ -1,10 +1,14 @@
 import { Navbar as NavbarMT, createStyles } from "@mantine/core";
 import { Home, User } from "tabler-icons-react";
 import UserButton from "../UserButton/UserButton";
+import { useRouter } from 'next/router'
+
+
+
 
 const linkData = [
-  { link: "", label: "Home", icon: Home },
-  { link: "", label: "Profile", icon: User },
+  { link: "/", label: "Home", icon: Home },
+  { link: "/profile", label: "Profile", icon: User },
 ];
 
 const useStyles = createStyles((theme, _params, getRef) => {
@@ -85,6 +89,7 @@ const useStyles = createStyles((theme, _params, getRef) => {
 
 const Navbar = ({ page, setPage }) => {
   const { classes, cx } = useStyles();
+  const router = useRouter()
 
   const links = linkData.map((item) => (
     <a
@@ -96,6 +101,8 @@ const Navbar = ({ page, setPage }) => {
       onClick={(event) => {
         event.preventDefault();
         setPage(item.label);
+        router.push(item.link)
+        
       }}
     >
       <item.icon className={classes.linkIcon} />
