@@ -6,6 +6,8 @@ import Navbar from "../components/Navbar/Navbar";
 import Flutters from "../components/Flutters/Flutters";
 import CreateFlutter from "../components/Flutters/CreateFlutter";
 import HeaderSearch from "../components/Header/HeaderSearch";
+import UserFile from "../components/UserButton/UserFile";
+
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -41,8 +43,8 @@ export default function Home() {
       })}
     >
       <LoadingOverlay visible={isLoading} />
+      <UserFile/>
       
-     
     </AppShell>
   );
 }
