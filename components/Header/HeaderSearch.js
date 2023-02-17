@@ -80,7 +80,6 @@ const HeaderSearch = ({ setFlutters }) => {
        </Group> 
         
         <Group> 
-          
           <TextInput
             value={searchTerm}
             onChange={(e) => handleSearch(e)}
