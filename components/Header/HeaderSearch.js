@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createStyles, Header, TextInput, Group } from "@mantine/core";
+import { createStyles, Header, TextInput, Group , Title} from "@mantine/core";
 import ColorToggle from "../ColorToggle/ColorToggle";
 import { Search } from "tabler-icons-react";
 import { Logo } from "./Logo";
@@ -10,7 +10,7 @@ const useStyles = createStyles((theme) => ({
     paddingLeft: theme.spacing.md,
     paddingRight: theme.spacing.md,
   },
-
+ 
   inner: {
     height: 56,
     display: "flex",
@@ -49,6 +49,8 @@ const useStyles = createStyles((theme) => ({
         theme.colorScheme === "dark"
           ? theme.colors.dark[6]
           : theme.colors.gray[0],
+
+     
     },
   },
 }));
@@ -70,9 +72,15 @@ const HeaderSearch = ({ setFlutters }) => {
 
   return (
     <Header height={56} className={classes.header}>
+      
       <div className={classes.inner}>
-        <Logo width={240} />
-        <Group>
+      <Group> 
+       <Logo width={240} />
+       <Title align="left" >REC Management</Title>
+       </Group> 
+        
+        <Group> 
+          
           <TextInput
             value={searchTerm}
             onChange={(e) => handleSearch(e)}

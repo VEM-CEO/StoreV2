@@ -7,8 +7,8 @@ const useStyles = createStyles((theme) => ({
     alignItems: "center",
   },
   logo: {
-    width: 32,
-    hieght:16,
+    width: 50,
+    hieght:25,
   },
 }));
 
@@ -18,7 +18,7 @@ export function Logo(props) {
 
   return (
     <div className={classes.logoContainer}>
-      <img className={classes.logo} src={'./favicon-32x32.png'} alt={'./favicon-32x32.png'} />
+      <img className={classes.logo} src={'android-chrome-192x192.png'} alt={'android-chrome-192x192.png'} />
     </div>
   );
 }
