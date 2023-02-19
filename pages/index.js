@@ -7,11 +7,13 @@ import Flutters from "../components/Flutters/Flutters";
 import CreateFlutter from "../components/Flutters/CreateFlutter";
 import HeaderSearch from "../components/Header/HeaderSearch";
 
+
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [flutters, setFlutters] = useState([]);
   const [page, setPage] = useState("Home");
   const setUser = useSetUser();
+ 
 
   useEffect(() => {
     (async () => {

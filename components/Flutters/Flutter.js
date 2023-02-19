@@ -111,7 +111,7 @@ const Flutter = ({ flutter, setFlutters }) => {
     form.reset();
     setInputDisabled(false);
     setModalOpened(false);
-    showSuccess("Your flutter has been updated");
+    showSuccess("Your Client has been updated");
   };
 
   const likeFlutter = async () => {

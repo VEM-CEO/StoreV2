@@ -3,35 +3,31 @@ import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { useSetUser } from "../context/UserContext";
 import { AppShell, LoadingOverlay } from "@mantine/core";
 import Navbar from "../components/Navbar/Navbar";
-import Flutters from "../components/Flutters/Flutters";
-import CreateFlutter from "../components/Flutters/CreateFlutter";
 import HeaderSearch from "../components/Header/HeaderSearch";
 import UserFile from "../components/UserButton/UserFile";
 
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  const [flutters, setFlutters] = useState([]);
   const [page, setPage] = useState("Profile");
   const setUser = useSetUser();
+  const [ userFile, setUserFile] = useState([])
 
   useEffect(() => {
     (async () => {
       const getUser = await fetch("/api/user");
       const getUserJson = await getUser.json();
-      setUser(getUserJson);
+      setUser(getUserJson)
+      setUserFile(getUserJson);
 
-      const getFlutters = await fetch("/api/flutter");
-      const getFluttersJson = await getFlutters.json();
-      setFlutters(getFluttersJson);
+
 
       setIsLoading(false);
     })();
-  }, []);
+  },);
 
   return (
     <AppShell
-      header={<HeaderSearch setFlutters={setFlutters} />}
       navbar={<Navbar page={page} setPage={setPage} />}
       styles={(theme) => ({
         main: {
@@ -43,7 +39,7 @@ export default function Home() {
       })}
     >
       <LoadingOverlay visible={isLoading} />
-      <UserFile/>
+      <UserFile userFile={userFile} setUserFile={setUserFile} />
       
     </AppShell>
   );
