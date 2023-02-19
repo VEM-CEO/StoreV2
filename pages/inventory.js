@@ -8,7 +8,7 @@ import Navbar from "../components/Navbar/Navbar";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  const [page, setPage] = useState("REC Inventory");
+  const [page, setPage] = useState("Inventory");
   const setUser = useSetUser();
  
 
