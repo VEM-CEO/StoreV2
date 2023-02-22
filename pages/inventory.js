@@ -3,12 +3,13 @@ import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { useSetUser } from "../context/UserContext";
 import { AppShell, LoadingOverlay } from "@mantine/core";
 import Navbar from "../components/Navbar/Navbar";
+import CertificateList from "../components/UserButton/CertificateList";
 
 
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  const [page, setPage] = useState("Inventory");
+  const [page, setPage] = useState("REC Inventory");
   const setUser = useSetUser();
  
 
@@ -38,7 +39,7 @@ export default function Home() {
       })}
     >
       <LoadingOverlay visible={isLoading} />
-     
+     <CertificateList/>
       
     </AppShell>
   );

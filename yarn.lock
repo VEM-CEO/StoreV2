@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@auth0/nextjs-auth0@^1.8.0":
-  "integrity" "sha512-lOI7i1khyuvVUGD/V9k+YMVxj3LB74KYqrCRQ8Uezai8YEAPHhExGMpIlFUPV7J4iPIuNNhW/4TYa45nkPNr0w=="
-  "resolved" "https://registry.npmjs.org/@auth0/nextjs-auth0/-/nextjs-auth0-1.8.0.tgz"
-  "version" "1.8.0"
+"@auth0/nextjs-auth0@^1.9.2":
+  "integrity" "sha512-QsO6jtDBms0mAb2B1GSqQVEeoj5EIIvUtbWs02O8Tp6FtMXDIvfuJv/EFbPkP/d86e9T/399uiiaUbpgo1g0jg=="
+  "resolved" "https://registry.npmjs.org/@auth0/nextjs-auth0/-/nextjs-auth0-1.9.2.tgz"
+  "version" "1.9.2"
   dependencies:
     "base64url" "^3.0.1"
     "cookie" "^0.5.0"
@@ -16,7 +16,7 @@
     "jose" "^2.0.5"
     "on-headers" "^1.0.2"
     "openid-client" "^4.9.1"
-    "tslib" "^2.3.1"
+    "tslib" "^2.4.0"
     "url-join" "^4.0.1"
 
 "@babel/runtime-corejs3@^7.10.2":
@@ -2531,7 +2531,7 @@
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.4.0.tgz"
   "version" "2.4.0"
 
-"tslib@^2.3.1":
+"tslib@^2.4.0":
   "integrity" "sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ=="
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.4.0.tgz"
   "version" "2.4.0"

@@ -1,0 +1,78 @@
+import React, { useEffect } from 'react';
+import SuccessDisplay from '../Components/Pages/ThankYou';
+import Layout from '../Components/Shared/Layout';
+import { handleStripe } from '../services/stripe/stripeData';
+export const getServerSideProps = async (context) => {
+    const { stripe_checkout_success, stripe_checkout_canceled, checkout_session_id, user_transaction_id } = context.query;
+    const success = stripe_checkout_success === 'true';
+    const canceled = stripe_checkout_canceled === 'true';
+    const sessionID = checkout_session_id;
+    const userTransactionID = user_transaction_id;
+    try {
+        const sessionData = await handleStripe.sessions.retrieve(sessionID);
+        console.log('sessionData', sessionData);
+        if (!sessionData)
+            return {
+                redirect: { destination: '/', permanent: false },
+                props: {}
+            };
+        if (sessionData.payment_status === 'paid') {
+            const purchasedEnergyQuantity = sessionData.amount_subtotal / 100 / 24;
+            const response = await fetch(`http://localhost:3000/api/stripe/provisionRec`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ purchasedEnergyQuantity: purchasedEnergyQuantity, userTransactionID: userTransactionID })
+            });
+            const data = await response.json();
+            console.log('data----', data.mretsUserTransactionID);
+            // const reciept = await mretsGetRecipt(`https://api-sandbox.mrets.org/v1/public/rec/user_transactions/${userTransactionID}/receipt.pdf`)
+            // console.log('receipt', reciept)
+            return {
+                props: { transactionId: userTransactionID, }
+            };
+        }
+    }
+    catch (error) {
+        if (error) {
+            console.log('-----------error', error);
+            return {
+                redirect: {
+                    permanent: false,
+                    destination: "/",
+                },
+                props: {},
+            };
+        }
+    }
+    return {
+        props: {}
+    };
+};
+const ProvisionCertificate = ({ transactionId, }) => {
+    const [reciept, setReciept] = React.useState(null);
+    useEffect(() => {
+        const getReceipt = async () => {
+            const reciept = await fetch(`http://localhost:3000/api/getReceipt`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sessionID: transactionId })
+            });
+            console.log('\n\n\n\n\n\n\n\n\n\nreciept', reciept, '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n');
+            const data = await reciept.text();
+            console.log('\n\n\n\n\n\n\n\n\n\ndata', data, '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n');
+            setReciept(data);
+        };
+        getReceipt();
+    }, []);
+    console.log('reciept', reciept);
+    return (React.createElement(Layout, { title: 'Provision Certificate' },
+        React.createElement("div", { className: '' },
+            React.createElement(SuccessDisplay, { sessionID: transactionId }),
+            React.createElement("div", { className: "text-center" },
+                React.createElement("div", { className: "mb-20" },
+                    React.createElement("h3", { className: 'text-4xl' },
+                        React.createElement("b", { className: 'text-blue-600' }, "[(Next Task)]"),
+                        "buffer this pdf to html for download")),
+                reciept))));
+};
+export default ProvisionCertificate;

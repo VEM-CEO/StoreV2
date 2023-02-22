@@ -12,7 +12,8 @@ export default function App(props) {
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
   return (
-    <>
+  
+    <UserProvider>
       <Head>
         <title>VEM Store Front</title>
         <meta
@@ -20,7 +21,7 @@ export default function App(props) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <UserProvider>
+      
         <AtlasUserProvider>
           <ColorSchemeProvider
             colorScheme={colorScheme}
@@ -56,6 +57,6 @@ export default function App(props) {
           </ColorSchemeProvider>
         </AtlasUserProvider>
       </UserProvider>
-    </>
+    
   );
 }
