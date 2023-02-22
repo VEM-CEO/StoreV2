@@ -21,7 +21,7 @@ import { showNotification } from "@mantine/notifications";
 import {
   Edit,
   Trash,
-  Heart,
+  ShoppingCartPlus ,
   Share,
   BrandTwitter,
   Check,

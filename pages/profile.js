@@ -5,6 +5,7 @@ import { AppShell, LoadingOverlay } from "@mantine/core";
 import Navbar from "../components/Navbar/Navbar";
 import HeaderSearch from "../components/Header/HeaderSearch";
 import UserFile from "../components/UserButton/UserFile";
+import { Logo } from "../components/Header/Logo";
 
 
 export default function Home() {
@@ -28,6 +29,7 @@ export default function Home() {
 
   return (
     <AppShell
+       header={<HeaderSearch  />}
       navbar={<Navbar page={page} setPage={setPage} />}
       styles={(theme) => ({
         main: {

@@ -17,7 +17,7 @@ import { showNotification } from "@mantine/notifications";
 import {
   Edit,
   Trash,
-  Heart,
+  ShoppingCartPlus ,
   Share,
   BrandTwitter,
   Check,
@@ -226,8 +226,8 @@ const Flutter = ({ flutter, setFlutters }) => {
                 <Text size="xs" color="dimmed">
                   {likesState ? likesState.length : 0}
                   {` ${
-                    likesState.length === 1 ? "person" : "people"
-                  } liked this`}
+                    likesState.length === 1 ? "Transactions" : "Transaction"
+                  } done`}
                 </Text>
                 <Group spacing={0}>
                   <ActionIcon
@@ -235,7 +235,7 @@ const Flutter = ({ flutter, setFlutters }) => {
                     size="lg"
                     loading={updatingLike}
                   >
-                    <Heart
+                    <ShoppingCartPlus 
                       size={18}
                       color={theme.colors.red[6]}
                       className={
@@ -254,17 +254,7 @@ const Flutter = ({ flutter, setFlutters }) => {
                     placement="start"
                     size="lg"
                   >
-                    <Menu.Item
-                      icon={
-                        <BrandTwitter size={16} color={theme.colors.blue[4]} />
-                      }
-                      component="a"
-                      href={tweetUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Twitter
-                    </Menu.Item>
+                  
                   </Menu>
                   {user.id === flutterUser.id && (
                     <>
