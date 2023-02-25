@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from 'react';
 import { useUser } from "../../context/UserContext";
-import { createStyles, Avatar, Group, Textarea, Button, TextInput, Box, NativeSelect } from "@mantine/core";
+import { createStyles, Avatar, Group, Textarea, Button, TextInput, Box, NativeSelect,NumberInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import { Check } from "tabler-icons-react";
@@ -18,6 +18,7 @@ const useStyles = createStyles((theme) => ({
       width: "25vw",
     },
   },
+  
 }));
 
 const CreateFlutter = ({ setFlutters }) => {
@@ -29,6 +30,7 @@ const CreateFlutter = ({ setFlutters }) => {
       flutter: "",
       email: " ",
       retirement: 'Beneficial Ownership',
+      quanity: "",
     },
   });
   const [inputDisabled, setInputDisabled] = useState(false);
@@ -41,6 +43,7 @@ const CreateFlutter = ({ setFlutters }) => {
       email: value.email,
       retirement: value.retirement,
       company: value.company,
+      quanity: value.quanity,
       likes: [],
       user: {
         id: user.id,
@@ -116,7 +119,13 @@ const CreateFlutter = ({ setFlutters }) => {
       withAsterisk
       {...form.getInputProps("retirement")}
     />
-          
+          <NumberInput
+      defaultValue={18}
+      placeholder="Quanity"
+      label="Quanity"
+      withAsterisk
+      {...form.getInputProps("quanity")}
+    />
         <Textarea
             required
             placeholder="Add additional notes..."

@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar/Navbar";
 import HeaderSearch from "../components/Header/HeaderSearch";
 import UserFile from "../components/UserButton/UserFile";
 import { Logo } from "../components/Header/Logo";
+import UserMAccount from "../components/UserButton/UserMAccount";
 
 
 export default function Home() {
@@ -13,15 +14,21 @@ export default function Home() {
   const [page, setPage] = useState("Profile");
   const setUser = useSetUser();
   const [ userFile, setUserFile] = useState([])
+  const [ account, setAccount ] = useState([])
 
   useEffect(() => {
     (async () => {
+      const MretsAccount = await fetch("/api/mrets/account");
+      const MretsAccountJson = await MretsAccount.json();
       const getUser = await fetch("/api/user");
       const getUserJson = await getUser.json();
       setUser(getUserJson)
       setUserFile(getUserJson);
-
-
+      setAccount(MretsAccountJson);
+      
+        
+        
+       
 
       setIsLoading(false);
     })();
@@ -42,7 +49,7 @@ export default function Home() {
     >
       <LoadingOverlay visible={isLoading} />
       <UserFile userFile={userFile} setUserFile={setUserFile} />
-      
+      <UserMAccount></UserMAccount>
     </AppShell>
   );
 }

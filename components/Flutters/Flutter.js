@@ -23,8 +23,6 @@ import {
   Check,
 } from "tabler-icons-react";
 
-const tweetUrl =
-  "https://twitter.com/intent/tweet?url=https%3A%2F%2Fsocialbutterfly.vercel.app%2F&text=Check%20out%20this%20cool%20social%20media%20Jamstack%20app%20I%20made%20using%20the%20@MongoDB%20Data%20API%2C%20@Vercel%20serverless%20functions%2C%20@GitHub%2C%20and%20@Auth0%20for%20user%20authentication%21%21%21";
 
 const useStyles = createStyles((theme) => ({
   flutter: {
@@ -58,7 +56,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const Flutter = ({ flutter, setFlutters }) => {
-  const { _id, postedAt, body, email, user: flutterUser, likes, retirement , company, } = flutter;
+  const { _id, postedAt, body, email, user: flutterUser, likes, retirement , company, quanity } = flutter;
   const user = useUser();
   const [modalOpened, setModalOpened] = useState(false);
   const [deleted, setDeleted] = useState(false);
@@ -216,7 +214,11 @@ const Flutter = ({ flutter, setFlutters }) => {
             <Text className={classes.body} size="sm">
               Type: {retirement}
             </Text>
-            
+
+            <Text className={classes.body} size="sm">
+            Quanity MW/h: {quanity}
+            </Text>
+
              <Text className={classes.body} size="sm">
               Notes: {body}
             </Text>

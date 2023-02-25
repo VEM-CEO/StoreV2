@@ -1,0 +1,130 @@
+// function CertificateList() {
+//   const [certificates, setCertificates] = useState([]);
+//   const [filterStatus, setFilterStatus] = useState("active");
+//   const [filterFuelType, setFilterFuelType] = useState("");
+//   const [filterEligibility, setFilterEligibility] = useState("");
+//   const [sortOrder, setSortOrder] = useState("created_at");
+//   const [isLoading, setIsLoading] = useState(false);
+
+//   const handleFilterStatusChange = (value) => {
+//     setFilterStatus(value);
+//   };
+
+//   const handleFilterFuelTypeChange = (value) => {
+//     setFilterFuelType(value);
+//   };
+
+//   const handleFilterEligibilityChange = (value) => {
+//     setFilterEligibility(value);
+//   };
+
+//   const handleSortOrderChange = (value) => {
+//     setSortOrder(value);
+//   };
+
+//   useEffect(() => {
+//     setIsLoading(true);
+
+//     let apiUrl = "https://api-sandbox.mrets.org/v1/public/rec/certificate_quantities?";
+//     let filterString = `filter[status]=${filterStatus}`;
+    
+//     if (filterFuelType) {
+//       filterString += `&filter[fuel_type]=${filterFuelType}`;
+//     }
+
+//     if (filterEligibility) {
+//       filterString += `&filter[eligibility]=${filterEligibility}`;
+//     }
+
+//     apiUrl += filterString;
+//     apiUrl += `&sort=${sortOrder}`;
+
+//     fetch(apiUrl, {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/pdf',
+//         'X-Api-Key':"process.env.MONGODB_DATA_API_URL,
+//       },
+//     })
+//       .then(response => response.json())
+//       .then(data => {
+//         setCertificates(data.data);
+//         setIsLoading(false);
+//       })
+//       .catch(error => {
+//         console.error(error);
+//         setIsLoading(false);
+//       });
+//   }, [filterStatus, filterFuelType, filterEligibility, sortOrder]);
+
+//  return (
+    // <div>
+    //   <div className={classes.flutter}>
+    //     <Text weight={700} size="md">
+    //       Active Certificates
+    //     </Text>
+    //   </div>
+  
+    //   <div className={classes.body}>
+    //     {certificates.length === 0 && (
+    //       <div>No active certificates available.</div>
+    //     )}
+  
+    //     {certificates.map((certificate) => (
+    //       <Card withBorder radius="md" key={certificate.id}>
+    //         <Group position="apart" noWrap>
+    //           <Avatar size="sm" />
+    //           <ActionIcon
+    //             variant="outline"
+    //             color="blue"
+    //             radius="xl"
+    //             padding="xl"
+    //           >
+    //             <Share />
+    //           </ActionIcon>
+    //         </Group>
+  
+    //         <div className={classes.content}>
+    //           <Text weight={700} size="sm">
+    //             Serial Number: {certificate.attributes.serial_number_base}
+    //           </Text>
+    //           <Text size="sm">Vintage Date: {certificate.attributes.vintage_date}</Text>
+    //           <Text size="sm">Quantity: {certificate.attributes.quantity}</Text>
+    //         </div>
+  
+    //         <div className={classes.footer}>
+    //           <Group position="center" spacing="md">
+    //             <ActionIcon
+    //               variant="outline"
+    //               color="gray"
+    //               radius="xl"
+    //               padding="md"
+    //             >
+    //               <Edit />
+    //             </ActionIcon>
+  
+    //             <ActionIcon
+    //               variant="outline"
+    //               color="gray"
+    //               radius="xl"
+    //               padding="md"
+    //             >
+    //               <Trash />
+    //             </ActionIcon>
+  
+    //             <ActionIcon
+    //               variant="outline"
+    //               color="gray"
+    //               radius="xl"
+    //               padding="md"
+    //             >
+    //               <Heart className={classes.liked} />
+    //             </ActionIcon>
+    //           </Group>
+    //         </div>
+    //       </Card>
+    //     ))}
+    //   </div>
+    // </div>
+//   );
+// export default CertificateList;

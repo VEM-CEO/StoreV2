@@ -48,7 +48,7 @@ try {
 
 // curl --location 'https://api-sandbox.mrets.org/v1/public/rec/certificates' \
 // --header 'Content-Type: application/x-www-form-urlencoded' \
-// --header 'X-Api-Key: rkQVa8X1ra3jkF6opuNz7VVK' \
+// --header 'X-Api-Key: process.env.MRETS_API_KEY \
 // --header 'Cookie: ahoy_visit=01a9fcd2-b9eb-4468-ae42-93a874489339; ahoy_visitor=7d8e14b5-e89a-4864-a898-8e95d02d2dad'
 
 // import { getAccessToken, withApiAuthRequired } from "@auth0/nextjs-auth0";
