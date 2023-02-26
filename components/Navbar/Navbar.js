@@ -1,6 +1,6 @@
 import { Navbar as NavbarMT, createStyles } from "@mantine/core";
-import { Home, User,} from "tabler-icons-react";
-import { IconCertificate } from '@tabler/icons-react';
+import { Home, User, Folder} from "tabler-icons-react";
+import { IconCertificate} from '@tabler/icons-react';
 import UserButton from "../UserButton/UserButton";
 import { useRouter } from 'next/router'
 
@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 const linkData = [
   { link: "/", label: "Home", icon: Home },
   { link: "/profile", label: "Profile", icon: User },
+  { link: '/accounts', label: 'Accounts', icon: Folder },
   { link: "/inventory", label: "REC Inventory", icon: IconCertificate },
 
 ];

@@ -5,13 +5,12 @@ import { AppShell, LoadingOverlay } from "@mantine/core";
 import Navbar from "../components/Navbar/Navbar";
 import HeaderSearch from "../components/Header/HeaderSearch";
 import UserFile from "../components/UserButton/UserFile";
-import { Logo } from "../components/Header/Logo";
 import UserMAccount from "../components/UserButton/UserMAccount";
 
 
-export default function Home() {
+export default function Account() {
   const [isLoading, setIsLoading] = useState(true);
-  const [page, setPage] = useState("Profile");
+  const [page, setPage] = useState("Account");
   const setUser = useSetUser();
   const [ userFile, setUserFile] = useState([])
   const [ account, setAccount ] = useState([])
@@ -48,7 +47,7 @@ export default function Home() {
       })}
     >
       <LoadingOverlay visible={isLoading} />
-      <UserFile userFile={userFile} setUserFile={setUserFile} />
+      <UserMAccount></UserMAccount>
     </AppShell>
   );
 }

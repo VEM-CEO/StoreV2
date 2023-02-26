@@ -13,6 +13,7 @@ import {
   SimpleGrid,
   Textarea,
   Button,
+  Paper,
 } from "@mantine/core";
 import { ChevronRight, Logout } from "tabler-icons-react";
 import { useForm } from "@mantine/form";
@@ -62,28 +63,28 @@ function UserMAccount() {
 
 
 return (
-    <div>
+    <>
     { account && 
         account.map((file) => (
-            <div key={file.id}>
-                <Card>
-                <p>id: {file.id}</p>
+            <Card key={file.id} shadow="sm" p="lg" radius="md" withBorder >
+                <Card.Section>
+                
+                  <Text>ID: {file.id}</Text>
+                  
+                  </Card.Section>
+                  
                 <p>Name: {file.attributes.name}</p>
                 <p> Status: {file.attributes.status}</p>
                 <p> Created: {file.attributes.created_at}</p>
                 <p>short_id: {file.attributes.short_id}</p>
-                </Card>
+                
             
             
             
-            
-            </div>
+            </Card>
         ))}
-    </div>
+    </>
 )
-
-
-
 
 
 }
