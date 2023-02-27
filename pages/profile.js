@@ -18,13 +18,11 @@ export default function Home() {
 
   useEffect(() => {
     (async () => {
-      const MretsAccount = await fetch("/api/mrets/account");
-      const MretsAccountJson = await MretsAccount.json();
+  
       const getUser = await fetch("/api/user");
       const getUserJson = await getUser.json();
       setUser(getUserJson)
       setUserFile(getUserJson);
-      setAccount(MretsAccountJson);
       
         
         
@@ -32,7 +30,7 @@ export default function Home() {
 
       setIsLoading(false);
     })();
-  }, );
+  },[] );
 
   return (
     <AppShell

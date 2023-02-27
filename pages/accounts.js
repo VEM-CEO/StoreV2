@@ -17,21 +17,17 @@ export default function Account() {
 
   useEffect(() => {
     (async () => {
-      const MretsAccount = await fetch("/api/mrets/account");
+      const MretsAccount = await fetch("/api/mrets/open_account");
       const MretsAccountJson = await MretsAccount.json();
       const getUser = await fetch("/api/user");
       const getUserJson = await getUser.json();
       setUser(getUserJson)
       setUserFile(getUserJson);
       setAccount(MretsAccountJson);
-      
-        
-        
-       
-
+  
       setIsLoading(false);
     })();
-  }, );
+  },[] );
 
   return (
     <AppShell

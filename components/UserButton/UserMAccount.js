@@ -15,17 +15,8 @@ import {
   Button,
   Paper,
 } from "@mantine/core";
-import { ChevronRight, Logout } from "tabler-icons-react";
-import { useForm } from "@mantine/form";
+
 import { showNotification } from "@mantine/notifications";
-import {
-  Edit,
-  Trash,
-  ShoppingCartPlus ,
-  Share,
-  BrandTwitter,
-  Check,
-} from "tabler-icons-react";
 
 const useStyles = createStyles((theme) => ({
   space: {
@@ -38,54 +29,71 @@ const useStyles = createStyles((theme) => ({
 
 
 function UserMAccount() {
-    const [account, setAccount] = useState([]);
-
-      useEffect(() => {
-        fetchAccount();
-      }, []);
-
-    
-    const fetchAccount = async () => {
-        try {
-        const response = await fetch("/api/mrets/account/")
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-      
-          const data = await response.json();
-          setAccount(data);
-        } catch (error) {
-          console.error(error);
-        }
-    };
-
+  const [account, setAccount] = useState([]);
+  const [Data, setData] = useState([]);
   
 
+  useEffect(() => {
+    fetchAccount();
+  },[]);
 
-return (
+
+  const fetchAccount = async () => {
+    try {
+      const response = await fetch("/api/mrets/open_account/");
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      setAccount(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleAccountClick = async (id) => {
+     
+    try {
+     
+      const response = await fetch(`/api/mrets/account/${id}`);
+      if (!response.ok) {
+        throw new Error(`Network response was not ok ${id}`);
+      }
+
+      const data = await response.json();
+      showNotification({
+        title: "Account Info",
+        message: JSON.stringify(data),
+        color: "teal",
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
     <>
-    { account && 
-        account.map((file) => (
-            <Card key={file.id} shadow="sm" p="lg" radius="md" withBorder >
-                <Card.Section>
-                
-                  <Text>ID: {file.id}</Text>
-                  
-                  </Card.Section>
-                  
-                <p>Name: {file.attributes.name}</p>
-                <p> Status: {file.attributes.status}</p>
-                <p> Created: {file.attributes.created_at}</p>
-                <p>short_id: {file.attributes.short_id}</p>
-                
-            
-            
-            
-            </Card>
-        ))}
+      {account &&
+  account.map((accountItem) => (
+    <Card key={accountItem.id} shadow="sm" p="lg" radius="md" withBorder>
+      <Card.Section>
+        <Text>ID: {accountItem.id}</Text>
+      </Card.Section>
+      <p>Name: {accountItem.attributes.name}</p>
+      <p>Status: {accountItem.attributes.status}</p>
+      <p>Created: {accountItem.attributes.created_at}</p>
+      <p>short_id: {accountItem.attributes.short_id}</p>
+      <Button
+        onClick={() => handleAccountClick(accountItem.id)}
+        variant="outline"
+        color="teal"
+      >
+        View Account
+      </Button>
+    </Card>
+  ))}
     </>
-)
-
-
+  );
 }
-export default UserMAccount;
+export default UserMAccount
