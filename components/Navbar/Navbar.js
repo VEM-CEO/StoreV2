@@ -11,7 +11,11 @@ const linkData = [
   { link: "/", label: "Home", icon: Home },
   { link: "/profile", label: "Profile", icon: User },
   { link: '/accounts', label: 'Accounts', icon: Folder },
+  {link: '/retire', label: 'Retirement Accounts', icon: Folder },
   { link: "/inventory", label: "REC Inventory", icon: IconCertificate },
+  
+   
+
 
 ];
 

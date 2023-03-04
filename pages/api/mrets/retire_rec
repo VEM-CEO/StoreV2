@@ -1,0 +1,57 @@
+export default async function handler(req, res) {
+    try {
+      const response = await fetch(args, {
+        method: 'PUT',
+        headers: {
+          'content-type': 'application/json',
+          'X-Api-Key': process.env.MRETS_API_KEY
+        },
+        body: JSON.stringify({
+          data: {
+            type: 'transaction_details',
+            attributes: {
+              serial_number_start: 1,
+              serial_number_end: 2
+            },
+            relationships: {
+              user_transaction: {
+                data: {
+                  type: 'user_transactions',
+                  id: ''
+                }
+              },
+              from_account: {
+                data: {
+                  type: 'accounts',
+                  id: process.env.WIND_ACCOUNT_ID
+                }
+              },
+              to_account: {
+                data: {
+                  type: 'accounts',
+                  id: process.env.RETIREMENT_ACCOUNT_ID
+                }
+              },
+              certificate: {
+                data: {
+                  type: 'certificates',
+                  id: req.body.certificateId
+                }
+              }
+            }
+          }
+        })
+      });
+  
+      // Handle the response from the API endpoint
+      if (!response.ok) {
+        throw new Error("Network response was not ok")
+      }
+  
+      const data = await response.json()
+      res.status(200).json(data.data)
+    } catch (error) {
+      console.log(error)
+      res.status(500).json({ message: "Error fetching certificates"})
+    }
+  }

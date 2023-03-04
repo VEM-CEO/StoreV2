@@ -1,25 +1,25 @@
-
-  export default async function handler(req, res) {
+export default async function handler(req, res) {
+    const { id } = req.query;
+  
     try {
       const response = await fetch(
-        "https://api-sandbox.mrets.org/v1/public/rec/certificate_quantities?filter[status]=active,include=account,certificate,transaction_detail",
+        `https://api-sandbox.mrets.org/v1/public/rec/accounts/${id}/close`, // Include the id in the URL string
         {
-          method: "GET",
+          method: "PUT",
           headers: {
             "Content-Type": "application/json",
             "X-Api-Key": process.env.MRETS_API_KEY,
           },
         }
       );
-  
       if (!response.ok) {
         throw new Error("Network response was not ok");
-      } 
+      }
   
       const data = await response.json();
-      res.status(200).json(data.data);
+      res.status(200).json(data);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "Error fetching certificates" });
+      res.status(500).send("Internal Server Error");
     }
   }

@@ -79,7 +79,7 @@ const useStyles = createStyles((theme) => ({
 
 
 
-const UserMAccount = ({setNewAccount}) => {
+const RetirementAccounts = ({setNewAccount}) => {
   const [account, setAccount] = useState([]);
   const [Data, setData] = useState([]);
   
@@ -103,7 +103,7 @@ const UserMAccount = ({setNewAccount}) => {
 
   const fetchAccount = async () => {
     try {
-      const response = await fetch("/api/mrets/open_account/");
+      const response = await fetch("/api/mrets/retirement_account/");
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -161,4 +161,4 @@ const UserMAccount = ({setNewAccount}) => {
     </>
   );
 }
-export default UserMAccount
+export default RetirementAccounts
