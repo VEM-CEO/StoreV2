@@ -56,7 +56,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const Flutter = ({ flutter, setFlutters }) => {
-  const { _id, postedAt, body, email, user: flutterUser, likes, retirement , company, quanity } = flutter;
+  const { _id, postedAt, body, email, user: flutterUser, likes,  company, quanity, name, compliance_period, retired_to } = flutter;
   const user = useUser();
   const [modalOpened, setModalOpened] = useState(false);
   const [deleted, setDeleted] = useState(false);
@@ -212,11 +212,10 @@ const Flutter = ({ flutter, setFlutters }) => {
             </Text>
 
             <Text className={classes.body} size="sm">
-              Type: {retirement}
-            </Text>
-
-            <Text className={classes.body} size="sm">
             Quanity MW/h: {quanity}
+            </Text>
+            <Text className={classes.body} size="sm">
+            Retirement type: {name}
             </Text>
 
              <Text className={classes.body} size="sm">
