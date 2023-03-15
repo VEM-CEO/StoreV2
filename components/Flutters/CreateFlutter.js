@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useUser } from "../../context/UserContext";
-import { createStyles, Avatar, Group, Textarea, Button, TextInput, Box, NativeSelect,NumberInput,Select,Space } from "@mantine/core";
-import { useForm } from "@mantine/form";
+import { createStyles, Group, Textarea, Button, TextInput, Box, NativeSelect,NumberInput,Select,Space } from "@mantine/core";
+import { useForm, isNotEmpty, isEmail, isInRange, hasLength, matches} from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import { Check } from "tabler-icons-react";
 
@@ -36,12 +36,13 @@ const CreateFlutter = ({ setFlutters }) => {
       retired_to: '',
       retirement_type:'',
     },
+   
   });
   const [inputDisabled, setInputDisabled] = useState(false);
   const [reason, setReason] = useState("");
   
-  function handleReasonChange(e) {
-    setReason(e.target.value);
+  function handleReasonChange(value) {
+    setReason(value);
   }
 
   const onSubmitFlutter = async (value) => {
@@ -111,16 +112,21 @@ const CreateFlutter = ({ setFlutters }) => {
       <form onSubmit={form.onSubmit((value) => onSubmitFlutter(value))}>
         
        
-        <select id="reason" value={reason} onChange={handleReasonChange}>
-        <option value="">Select Voluntary or Compliance</option>
-        <option value="voluntary">Voluntary</option>
-        <option value="compliance">Compliance</option>
-        </select>
+      <Select
+  id="reason"
+  value={reason}
+  onChange={handleReasonChange}
+  label="Select Voluntary or Compliance"
+  data={[
+    { value: "voluntary", label: "Voluntary" },
+    { value: "compliance", label: "Compliance" },
+  ]}
+/>
         
 
         {reason === 'voluntary' && (
         <div>
-          <label htmlFor="voluntary-options">Select a voluntary option:</label>
+          
           <Select id="name"
                data={['Green Pricing Program','Beneficial Ownership', 'Green-e Energy Certified Voluntary Market Sale', 'Federal Renewable Energy Requirement', 'Municipal Portfolio Standard','State/Provincial Renewable Energy Requirement']}
                placeholder="Voluntary Options"
@@ -306,7 +312,7 @@ const CreateFlutter = ({ setFlutters }) => {
 
       {reason === 'compliance' && (
         <div>
-           <label htmlFor="voluntary-options">Select a compliance option:</label>
+           
           <Select id="name"
                data={['State/Provincial Portfolio Standards','Other - Non-RPS Compliance']}
                placeholder="Compliance Options"
