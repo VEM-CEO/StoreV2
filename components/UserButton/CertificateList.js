@@ -1,28 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useUser } from "../../context/UserContext";
-import {
-  createStyles,
-  Text,
-  Avatar,
-  Group,
-  Card,
-  ActionIcon,
-  Modal,
-  Menu,
-  Textarea,
-  Button,
-  PortalProvider,
-} from "@mantine/core";
+import {createStyles,Text,Avatar, Group,Card,ActionIcon, Modal, Menu, Textarea, Button, PortalProvider,} from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
-import {
-  Edit,
-  Trash,
-  ShoppingCartPlus ,
-  Share,
-  BrandTwitter,
-  Check,
-} from "tabler-icons-react";
+import {Edit, Trash, ShoppingCartPlus ,Share,Check,} from "tabler-icons-react";
 
 
 const useStyles = createStyles((theme) => ({
@@ -106,8 +87,11 @@ function CertificateList() {
               <Text><strong>Serial End:</strong> {certificate.attributes.serial_number_end}</Text>
               <Text><strong>Vintage Date:</strong> {parseSerialNumber(certificate.attributes.serial_number_base)}</Text>
               <Text><strong>Quantity:</strong> {certificate.attributes.quantity}</Text>
-              <Text><strong>Status:</strong> {certificate.attributes.status}</Text>
-             
+              <Text><strong>Status:</strong>{certificate.attributes.status}</Text>
+              <Text>
+               <strong>Account ID:</strong> {certificate.relationships.account.data.id} </Text>
+               <Text><strong></strong> {certificate.relationships.account.data.name}</Text>
+            
 
              
             </Card>

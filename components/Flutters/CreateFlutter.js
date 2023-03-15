@@ -27,13 +27,14 @@ const CreateFlutter = ({ setFlutters }) => {
   const form = useForm({
     initialValues: {
       company: " ",
-      flutter: "",
+      notes: "",
       email: " ",
       retirement: '',
       name: "",
-      reason: "",
+      retirement_reason: "",
       compliance_period: "",
       retired_to: '',
+      retirement_type:'',
     },
   });
   const [inputDisabled, setInputDisabled] = useState(false);
@@ -47,13 +48,14 @@ const CreateFlutter = ({ setFlutters }) => {
     setInputDisabled(true);
     const flutter = {
       postedAt: Date.now(),
-      body: value.flutter,
+      notes: value.notes,
       email: value.email,
       company: value.company,
       name: value.name,
-      reason: value.reason,
+      retirement_reason: value.retirement_reason,
       compliance_period: value.compliance_period,
       retired_to: value.retired_to,
+      retirement_type: value.retirement_type,
       
       likes: [],
       user: {
@@ -123,7 +125,7 @@ const CreateFlutter = ({ setFlutters }) => {
                data={['Green Pricing Program','Beneficial Ownership', 'Green-e Energy Certified Voluntary Market Sale', 'Federal Renewable Energy Requirement', 'Municipal Portfolio Standard','State/Provincial Renewable Energy Requirement']}
                placeholder="Voluntary Options"
                label="Reason"
-               {...form.getInputProps('name')}
+               {...form.getInputProps('retirement_type')}
           />
 
 { form.values.name === 'Green Pricing Program' &&(
@@ -138,7 +140,7 @@ const CreateFlutter = ({ setFlutters }) => {
                 ]}
                 placeholder="Reason Options"
                 label="Type"
-                {...form.getInputProps('reason')} />
+                {...form.getInputProps('retirement_reason')} />
                 
                 
                 <Select id="State/Province"
@@ -162,12 +164,10 @@ const CreateFlutter = ({ setFlutters }) => {
                     placeholder="Select a year"
                     label="Compliance Period"
                     {...form.getInputProps("compliance_period")} /></>
-          
-
-
+        
         )}
        
-        { form.values.name === 'Beneficial Ownership' &&(
+        { form.values.retirement_type === 'Beneficial Ownership' &&(
           
           <>
           
@@ -179,17 +179,14 @@ const CreateFlutter = ({ setFlutters }) => {
                 ]}
                 placeholder="Reason Options"
                 label="Type"
-                {...form.getInputProps('reason')} />
+                {...form.getInputProps('retirement_reason')} />
                 
                 
           </>
-          
-
-
         )}
         </div>
       )}
-       { form.values.name === 'Federal Renewable Energy Requirement' &&(
+       { form.values.retirement_type === 'Federal Renewable Energy Requirement' &&(
           
           <>
           
@@ -208,7 +205,7 @@ const CreateFlutter = ({ setFlutters }) => {
                 ]}
                 placeholder="Reason Options"
                 label="Type"
-                {...form.getInputProps('reason')} />
+                {...form.getInputProps('retirement_reason')} />
                 <Select id="Compliance Period"
                     data={[
                       "2025",
@@ -224,16 +221,35 @@ const CreateFlutter = ({ setFlutters }) => {
                     placeholder="Select a year"
                     label="Compliance Period"
                     {...form.getInputProps("compliance_period")} /></>
-          
-
-
         )}
-         { form.values.name === 'Municipal Portfolio Standard' &&(
+         { form.values.retirement_type === 'Municipal Portfolio Standard' &&(
           
           <>
+                <Select id="State/Province"
+                  data={["Na", "Alabama",
+                    "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
+                    "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming", "Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Northwest Territories", "Nova Scotia", "Nunavut", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan", "Yukon"]}
+                  placeholder="Select State/Province"
+                  label="State/Province"
+                  {...form.getInputProps("retired_to")} /><Select id="Compliance Period"
+                    data={[
+                      "2025",
+                      "2024",
+                      "2023",
+                      "2022",
+                      "2021",
+                      "2020",
+                      "2019",
+                      "2018",
+                      "2017"
+                    ]}
+                    label="Compliance Period"
+                    {...form.getInputProps("compliance_period")} /></>
+        
+        )}
+        { form.values.retirement_type === 'State/Provincial Renewable Energy Requirement' &&(
           
-                
-                
+          <>
                 <Select id="State/Province"
                   data={["Na", "Alabama",
                     "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
@@ -255,40 +271,8 @@ const CreateFlutter = ({ setFlutters }) => {
                     label="Compliance Period"
                     {...form.getInputProps("compliance_period")} /></>
           
-
-
         )}
-        { form.values.name === 'State/Provincial Renewable Energy Requirement' &&(
-          
-          <>
-          
-                
-                
-                <Select id="State/Province"
-                  data={["Na", "Alabama",
-                    "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
-                    "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming", "Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Northwest Territories", "Nova Scotia", "Nunavut", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan", "Yukon"]}
-                  placeholder="Select State/Province"
-                  label="State/Province"
-                  {...form.getInputProps("retired_to")} /><Select id="Compliance Period"
-                    data={[
-                      "2025",
-                      "2024",
-                      "2023",
-                      "2022",
-                      "2021",
-                      "2020",
-                      "2019",
-                      "2018",
-                      "2017"
-                    ]}
-                    label="Compliance Period"
-                    {...form.getInputProps("compliance_period")} /></>
-          
-
-
-        )}
- { form.values.name === 'Green-e Energy Certified Voluntary Market Sale' &&(
+ { form.values.retirement_type === 'Green-e Energy Certified Voluntary Market Sale' &&(
           
           <>
           
@@ -300,7 +284,7 @@ const CreateFlutter = ({ setFlutters }) => {
                 ]}
                 placeholder="Reason Options"
                 label="Type"
-                {...form.getInputProps('reason')} />
+                {...form.getInputProps('retirement_reason')} />
                 
                 
           <Select id="Compliance Period"
@@ -318,12 +302,6 @@ const CreateFlutter = ({ setFlutters }) => {
                     placeholder="Select Compliance Period"
                     label="Compliance Period"
                     {...form.getInputProps("compliance_period")} /></>
-
-
-            
-          
-
-
         )}
 
       {reason === 'compliance' && (
@@ -333,9 +311,9 @@ const CreateFlutter = ({ setFlutters }) => {
                data={['State/Provincial Portfolio Standards','Other - Non-RPS Compliance']}
                placeholder="Compliance Options"
                label="Type"
-               {...form.getInputProps('name')}
+               {...form.getInputProps('retirement_type')}
           />
-        { form.values.name === 'State/Provincial Portfolio Standards' &&(
+        { form.values.retirement_type === 'State/Provincial Portfolio Standards' &&(
           
           <>
           <Select id="reason"
@@ -345,7 +323,7 @@ const CreateFlutter = ({ setFlutters }) => {
                 ]}
                 placeholder="Reason Options"
                 label="Type"
-                {...form.getInputProps('reason')} />
+                {...form.getInputProps('retirement_reason')} />
                 <Select id="State/Province"
                   data={["Na", "Alabama",
                     "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
@@ -367,13 +345,10 @@ const CreateFlutter = ({ setFlutters }) => {
                     placeholder="Select Compliance Period"
                     label="Compliance Period"
                     {...form.getInputProps("compliance_period")} /></>
-          
-
-
+        
         )}
 
-
-            { form.values.name === 'Other - Non-RPS Compliance' &&(
+            { form.values.retirement_type === 'Other - Non-RPS Compliance' &&(
           
           <>
                 <Select id="State/Province"
@@ -397,16 +372,11 @@ const CreateFlutter = ({ setFlutters }) => {
                     placeholder="Select Compliance Period"
                     label="Compliance Period"
                     {...form.getInputProps("compliance_period")} /></>
-          
 
         )}
         </div>
       )}
    
-
-
-
-
         <TextInput
           withAsterisk
           label="Company Name"
@@ -426,7 +396,7 @@ const CreateFlutter = ({ setFlutters }) => {
             placeholder="Add additional notes..."
             variant="filled"
             className={classes.media}
-            {...form.getInputProps("flutter")}
+            {...form.getInputProps("notes")}
           />
           <Space h="xl" />
           <Button type="submit" disabled={inputDisabled}>

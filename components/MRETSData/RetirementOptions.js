@@ -183,7 +183,7 @@ const retirement_option = {
     },
     "attributes": {
       "resource_type": "rec",
-      "name": "Municipal Portfolio Standard",
+      "name": "w",
       "reason": null,
       "retired_to": "all",
       "quarter": false,

@@ -56,7 +56,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const Flutter = ({ flutter, setFlutters }) => {
-  const { _id, postedAt, body, email, user: flutterUser, likes,  company, quanity, name, compliance_period, retired_to } = flutter;
+  const { _id, postedAt, body, email, user: flutterUser, likes,notes,company, name, compliance_period,retirement_reason,retirement_type, retired_to,retirement } = flutter;
   const user = useUser();
   const [modalOpened, setModalOpened] = useState(false);
   const [deleted, setDeleted] = useState(false);
@@ -210,16 +210,21 @@ const Flutter = ({ flutter, setFlutters }) => {
             <Text className={classes.body} size="sm">
               Email: {email}
             </Text>
-
             <Text className={classes.body} size="sm">
+            Retirement type: {retirement_type}
+            </Text>
+
+            {/* <Text className={classes.body} size="sm">
             Quanity MW/h: {quanity}
+            </Text> */}
+            <Text className={classes.body} size="sm">
+            retirement_reason: {retirement_reason}
             </Text>
             <Text className={classes.body} size="sm">
-            Retirement type: {name}
+            retirement: {retirement}
             </Text>
-
              <Text className={classes.body} size="sm">
-              Notes: {body}
+              Notes: {notes}
             </Text>
             
             <Card.Section className={classes.footer}>

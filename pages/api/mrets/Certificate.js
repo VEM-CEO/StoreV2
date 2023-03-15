@@ -2,7 +2,7 @@
   export default async function handler(req, res) {
     try {
       const response = await fetch(
-        "https://api-sandbox.mrets.org/v1/public/rec/certificate_quantities?filter[status]=active,include=account,certificate,transaction_detail",
+        "https://api-sandbox.mrets.org/v1/public/rec/certificate_quantities?filter[status]=active&include=account,certificate,transaction_detail",
         {
           method: "GET",
           headers: {
