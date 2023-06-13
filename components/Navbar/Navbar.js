@@ -13,6 +13,7 @@ const linkData = [
   { link: '/accounts', label: 'Accounts', icon: Folder },
   {link: '/retire', label: 'Retirement Accounts', icon: Folder },
   { link: "/inventory", label: "REC Inventory", icon: IconCertificate },
+  { link: "/order", label: "order", icon: IconCertificate },
   
    
 
